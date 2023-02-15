@@ -1,4 +1,4 @@
-package org.example.robot.configs;
+package org.example.robot.apps;
 
 import org.example.robot.controllers.RobotController;
 import org.example.robot.models.RobotModel;
@@ -9,12 +9,12 @@ public class RobotApp {
 
     private static RobotController robotController;
     public static void run() {
-        while (true) {
-            robotController = new RobotController(
-                    new RobotView(System.in),
-                    new RobotService(RobotModel.getStartingRobot())
-            );
+        robotController = new RobotController(
+                new RobotView(System.in),
+                new RobotService(RobotModel.getStartingRobot())
+        );
 
+        while (true) {
               try {
                   robotController.parseCommands();
                   robotController.sendResult();

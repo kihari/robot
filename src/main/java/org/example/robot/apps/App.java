@@ -1,6 +1,6 @@
-package org.example.robot;
+package org.example.robot.apps;
 
-import org.example.robot.configs.RobotApp;
+import org.example.robot.apps.RobotApp;
 
 /**
  * Hello world!

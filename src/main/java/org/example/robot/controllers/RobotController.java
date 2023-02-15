@@ -38,15 +38,20 @@ public class RobotController {
                 case 'f' :
                     robotState = robotService.moveForward();
                     addRobotState(robotState);
+                    break;
                 case 'r' :
                     robotState = robotService.turnRight();
                     addRobotState(robotState);
+                    break;
                 case 'l' :
                     robotState = robotService.turnLeft();
                     addRobotState(robotState);
-                case ' ' : continue;
+                    break;
+//                case ' ' : continue;
                 case '.' : break;
-                default : throw new Exception();
+                default :
+                    continue;
+                    /*throw new Exception();*/
             }
         }
     }
