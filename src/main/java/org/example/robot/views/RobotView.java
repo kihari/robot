@@ -1,8 +1,10 @@
 package org.example.robot.views;
 
 import lombok.RequiredArgsConstructor;
+import org.example.robot.models.RobotModel;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.Scanner;
 
 @RequiredArgsConstructor
@@ -14,7 +16,9 @@ public class RobotView {
         return new Scanner(this.source);
     }
 
-    public void outputResult() {
-
+    public void outputResult(List<RobotModel> statesList) {
+        for (var state : statesList) {
+            System.out.println(state);
+        }
     }
 }

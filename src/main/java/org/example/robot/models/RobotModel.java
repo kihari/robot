@@ -12,10 +12,23 @@ public class RobotModel {
     private int y;
     private Direction direction;
 
-    public RobotModel(int x, int y, Direction direction) {
+    private final int barrierHeight = 9;
+    private final int barrierWidth = 9;
+
+    private RobotModel(int x, int y, Direction direction) {
         this.x = x;
         this.y = y;
         this.direction = direction;
+    }
+
+    private RobotModel() {}
+
+    public static RobotModel getStartingRobot() {
+        return new RobotModel(4, 4, Direction.NORTH);
+    }
+
+    public static RobotModel getEmptyRobot() {
+        return new RobotModel();
     }
 }
 

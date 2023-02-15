@@ -1,47 +1,43 @@
 package org.example.robot.models.service;
+import lombok.RequiredArgsConstructor;
 import org.example.robot.models.Direction;
 import org.example.robot.models.RobotModel;
 
 import java.util.Hashtable;
 
 public class RobotService {
+    private RobotModel robotModel;
 
-
-    public RobotModel moveForward(RobotModel robotModel, Direction direction, int length) {
-
-        if (direction == Direction.NORTH || direction == Direction.SOUTH) {
-            robotModel.setY(robotModel.getY() + length);
-        } else {
-            robotModel.setX(robotModel.getX() + length);
-        }
-        return robotModel;
+    public RobotService(RobotModel robotModel) {
+        this.robotModel = robotModel;
     }
 
-   /* public RobotModel move(int dX, int dY) {
-        robotModel.setX(dX);
-        robotModel.setDirection();
-    }*/
+    public RobotModel moveForward() {
+        if (robotModel.getDirection() == Direction.NORTH
+                || robotModel.getDirection() == Direction.SOUTH)
+            robotModel.setX(robotModel.getX() + 1);
+        else robotModel.setY(robotModel.getY() + 1);
 
-    public void move(int dX, int dY, RobotModel robotModel) {
+        return this.robotModel;
+    }
 
-        int finalX = robotModel.getX() + dX;
-        int finalY = robotModel.getY() + dY;
-
+    public RobotModel turnRight() {
         switch (robotModel.getDirection()) {
-
-            case NORTH:
-                if (finalY <= robotModel.getY()) {
-                    if (finalX < robotModel.getX()) robotModel.setDirection(Direction.WEST);
-                    else if (finalX == robotModel.getX()) robotModel.setDirection(Direction.SOUTH);
-                    else robotModel.setDirection(Direction.EAST);
-                }
-            case EAST:
-                //
-            case SOUTH:
-                //
-            case WEST:
-            default:
+            case NORTH -> robotModel.setDirection(Direction.EAST);
+            case EAST -> robotModel.setDirection(Direction.SOUTH);
+            case SOUTH -> robotModel.setDirection(Direction.WEST);
+            case WEST -> robotModel.setDirection(Direction.NORTH);
         }
+        return this.robotModel;
+    }
 
+    public RobotModel turnLeft() {
+        switch (robotModel.getDirection()) {
+            case NORTH -> robotModel.setDirection(Direction.WEST);
+            case WEST -> robotModel.setDirection(Direction.SOUTH);
+            case SOUTH-> robotModel.setDirection(Direction.EAST);
+            case EAST -> robotModel.setDirection(Direction.NORTH);
+        }
+        return this.robotModel;
     }
 }

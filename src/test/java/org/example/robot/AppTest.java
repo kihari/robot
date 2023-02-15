@@ -3,6 +3,7 @@ package org.example.robot;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.example.robot.controllers.RobotController;
 
 /**
  * Unit test for simple App.
@@ -25,7 +26,7 @@ public class AppTest
      */
     public static Test suite()
     {
-        return new TestSuite( AppTest.class );
+        return new TestSuite(RobotController.class);
     }
 
     /**
