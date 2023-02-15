@@ -13,10 +13,12 @@ public class RobotService {
     }
 
     public RobotModel moveForward() {
-        if (robotModel.getDirection() == Direction.NORTH
-                || robotModel.getDirection() == Direction.SOUTH)
-            robotModel.setX(robotModel.getX() + 1);
-        else robotModel.setY(robotModel.getY() + 1);
+        switch (robotModel.getDirection()) {
+            case NORTH -> robotModel.setY(robotModel.getY() + 1);
+            case SOUTH -> robotModel.setY(robotModel.getY() - 1);
+            case EAST -> robotModel.setX(robotModel.getX() + 1);
+            case WEST -> robotModel.setX(robotModel.getX() - 1);
+        }
 
         return this.robotModel;
     }

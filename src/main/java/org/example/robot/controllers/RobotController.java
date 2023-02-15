@@ -47,11 +47,10 @@ public class RobotController {
                     robotState = robotService.turnLeft();
                     addRobotState(robotState);
                     break;
-//                case ' ' : continue;
+                case ' ' : continue;
                 case '.' : break;
                 default :
-                    continue;
-                    /*throw new Exception();*/
+                    throw new Exception();
             }
         }
     }
