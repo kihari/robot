@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Setter
 @Getter
-@ToString
+@ToString(exclude = {"barrierHeight", "barrierWidth"})
 public class RobotModel {
     private int x;
     private int y;

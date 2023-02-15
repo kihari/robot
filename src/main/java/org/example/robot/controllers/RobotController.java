@@ -35,21 +35,21 @@ public class RobotController {
         for (char command : commands) {
             RobotModel robotState;
             switch (command) {
-                case 'f' :
+                case 'f' -> {
                     robotState = robotService.moveForward();
                     addRobotState(robotState);
-                    break;
-                case 'r' :
+                }
+                case 'r' -> {
                     robotState = robotService.turnRight();
                     addRobotState(robotState);
-                    break;
-                case 'l' :
+                }
+                case 'l' -> {
                     robotState = robotService.turnLeft();
                     addRobotState(robotState);
-                    break;
-                case ' ' : continue;
-                case '.' : break;
-                default :
+                }
+/*                case ' ' -> { continue;}
+                case '.' -> {break;}*/
+                default ->
                     throw new Exception();
             }
         }
