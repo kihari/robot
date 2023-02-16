@@ -1,4 +1,5 @@
 package org.example.robot.models.service;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.example.robot.models.Direction;
 import org.example.robot.models.RobotModel;
@@ -12,6 +13,18 @@ public class RobotService {
         this.robotModel = robotModel;
     }
 
+    private int height;
+    public int getHeight() {
+        this.height = robotModel.getBarrierHeight();
+        return this.height;
+    }
+
+    private int width;
+    public int getWidth() {
+        this.width = robotModel.getBarrierWidth();
+        return this.width;
+    }
+
     public RobotModel moveForward() {
         switch (robotModel.getDirection()) {
             case NORTH -> robotModel.setY(robotModel.getY() + 1);
@@ -19,7 +32,6 @@ public class RobotService {
             case EAST -> robotModel.setX(robotModel.getX() + 1);
             case WEST -> robotModel.setX(robotModel.getX() - 1);
         }
-
         return this.robotModel;
     }
 

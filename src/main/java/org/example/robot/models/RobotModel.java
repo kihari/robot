@@ -24,7 +24,7 @@ public class RobotModel {
     private RobotModel() {}
 
     public static RobotModel getStartingRobot() {
-        return new RobotModel(4, 4, Direction.NORTH);
+        return new RobotModel(5, 5, Direction.NORTH);
     }
 
     public static RobotModel getEmptyRobot() {

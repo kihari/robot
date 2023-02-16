@@ -4,6 +4,11 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.example.robot.controllers.RobotController;
+import org.example.robot.models.RobotModel;
+import org.example.robot.views.RobotView;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Unit test for simple App.
@@ -35,5 +40,13 @@ public class AppTest
     public void testApp()
     {
         assertTrue( true );
+    }
+
+    public void testOutputAsTable() {
+        List<RobotModel> list = new LinkedList<>();
+        list.add(RobotModel.getStartingRobot());
+        RobotView robotView = new RobotView(System.in);
+
+        robotView.outputResultAsTable(list, 9, 9);
     }
 }

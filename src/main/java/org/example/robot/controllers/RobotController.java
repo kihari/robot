@@ -32,8 +32,9 @@ public class RobotController {
                 .next()
                 .toCharArray();
 
+        RobotModel robotState;
+
         for (char command : commands) {
-            RobotModel robotState;
             switch (command) {
                 case 'f' -> {
                     robotState = robotService.moveForward();
@@ -47,8 +48,8 @@ public class RobotController {
                     robotState = robotService.turnLeft();
                     addRobotState(robotState);
                 }
-/*                case ' ' -> { continue;}
-                case '.' -> {break;}*/
+//                case ' ' -> {continue;}
+                case '.' -> {break;}
                 default ->
                     throw new Exception();
             }
@@ -56,6 +57,12 @@ public class RobotController {
     }
 
     public void sendResult() {
-        robotView.outputResult(statesList);
+        robotView.outputResultAsStatesList(statesList);
+
+        robotView.outputResultAsTable(
+                statesList,
+                robotService.getHeight(),
+                robotService.getWidth()
+        );
     }
 }

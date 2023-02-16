@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.robot.models.RobotModel;
 
 import java.io.InputStream;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,9 +17,29 @@ public class RobotView {
         return new Scanner(this.source);
     }
 
-    public void outputResult(List<RobotModel> statesList) {
+    public void outputResultAsStatesList(List<RobotModel> statesList) {
         for (var state : statesList) {
             System.out.println(state);
+        }
+    }
+
+    public void outputResultAsTable(List<RobotModel> statesList, int height, int width) {
+
+
+        for (int i = width; i > 0; i--) {
+            for (int j = height; j > 0; j--) {
+                RobotModel testState = null;
+                for (var state : statesList) {
+                    if (state.getX() == j && state.getY() == i) {
+                        System.out.print("+  ");
+                        testState = state;
+                        break;
+                    }
+                }
+                if (testState == null)
+                    System.out.print("-  ");
+            }
+            System.out.println();
         }
     }
 }
