@@ -25,10 +25,7 @@ public class RobotView {
     }
 
     public void outputResultAsMap(Map<Character, RobotModel> statesMap) {
-        for (Map.Entry entry : statesMap.entrySet()) {
-            System.out.println("command: " + entry.getKey()
-                    + ", state: " + entry.getValue());
-        }
+
     }
 
     public void outputResultAsTable(List<RobotModel> statesList, int height, int width) {

@@ -65,14 +65,14 @@ public class RobotController {
     }
 
     public void sendResult() {
-        /*robotView.outputResultAsStatesList(statesList);
+        robotView.outputResultAsStatesList(statesList);
 
-            robotView.outputResultAsTable(
+            /*robotView.outputResultAsTable(
                     statesList,
                     robotService.getHeight(),
                     robotService.getWidth()
             );*/
 
-        robotView.outputResultAsMap(statesMap);
+//        robotView.outputResultAsMap(statesMap);
     }
 }
