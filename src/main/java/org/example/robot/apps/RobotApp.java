@@ -5,6 +5,8 @@ import org.example.robot.models.RobotModel;
 import org.example.robot.models.service.RobotService;
 import org.example.robot.views.RobotView;
 
+import java.rmi.NotBoundException;
+
 public class RobotApp {
 
     private static RobotController robotController;
@@ -18,8 +20,10 @@ public class RobotApp {
               try {
                   robotController.parseCommands();
                   robotController.sendResult();
-              } catch (Exception e) {
+              } catch (IllegalArgumentException e) {
                   System.out.println("ERROR: Unexpected symbol");
+              } catch (NotBoundException e) {
+                  System.out.println("ERROR: No terminating symbol");
               }
         }
     }

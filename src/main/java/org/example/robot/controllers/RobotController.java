@@ -5,8 +5,11 @@ import org.example.robot.models.RobotModel;
 import org.example.robot.models.service.RobotService;
 import org.example.robot.views.RobotView;
 
+import java.rmi.NotBoundException;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 public class RobotController {
@@ -14,7 +17,11 @@ public class RobotController {
     private final RobotView robotView;
     private final RobotService robotService;
 
+    private boolean isTermSym = false;
+
     private List<RobotModel> statesList = new LinkedList<>();
+
+
 
     private void addRobotState(RobotModel robotState) {
         RobotModel emptyRobot = RobotModel.getEmptyRobot();
@@ -26,7 +33,7 @@ public class RobotController {
         statesList.add(emptyRobot);
     }
 
-    public void parseCommands() throws Exception {
+    public void parseCommands() throws IllegalArgumentException {
         char[] commands = robotView
                 .scanCommands()
                 .next()
@@ -48,21 +55,26 @@ public class RobotController {
                     robotState = robotService.turnLeft();
                     addRobotState(robotState);
                 }
-//                case ' ' -> {continue;}
-                case '.' -> {break;}
+                case ';' -> {continue;}
+                case '.' -> {
+                    isTermSym = true;
+                }
                 default ->
-                    throw new Exception();
+                    throw new IllegalArgumentException();
             }
         }
     }
 
-    public void sendResult() {
-        robotView.outputResultAsStatesList(statesList);
+    public void sendResult() throws NotBoundException {
 
-        robotView.outputResultAsTable(
-                statesList,
-                robotService.getHeight(),
-                robotService.getWidth()
-        );
+        if(isTermSym) {
+            robotView.outputResultAsStatesList(statesList);
+
+            robotView.outputResultAsTable(
+                    statesList,
+                    robotService.getHeight(),
+                    robotService.getWidth()
+            );
+        } else throw new NotBoundException();
     }
 }
