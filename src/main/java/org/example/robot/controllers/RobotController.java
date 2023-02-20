@@ -6,10 +6,7 @@ import org.example.robot.models.service.RobotService;
 import org.example.robot.views.RobotView;
 
 import java.rmi.NotBoundException;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RequiredArgsConstructor
 public class RobotController {
@@ -17,13 +14,11 @@ public class RobotController {
     private final RobotView robotView;
     private final RobotService robotService;
 
-    private boolean isTermSym = false;
-
     private List<RobotModel> statesList = new LinkedList<>();
 
+    private Map<Character, RobotModel> statesMap = new HashMap<>();
 
-
-    private void addRobotState(RobotModel robotState) {
+    private void addRobotState(RobotModel robotState, char command) {
         RobotModel emptyRobot = RobotModel.getEmptyRobot();
 
         emptyRobot.setX(robotState.getX());
@@ -31,9 +26,10 @@ public class RobotController {
         emptyRobot.setDirection(robotState.getDirection());
 
         statesList.add(emptyRobot);
+        statesMap.put(command, emptyRobot);
     }
 
-    public void parseCommands() throws IllegalArgumentException {
+    public void parseCommands() throws NotBoundException,  IllegalArgumentException{
         char[] commands = robotView
                 .scanCommands()
                 .next()
@@ -42,39 +38,41 @@ public class RobotController {
         RobotModel robotState;
 
         for (char command : commands) {
+
+            if (commands[commands.length-1] != '.') {
+                throw new NotBoundException();
+            }
+
             switch (command) {
                 case 'f' -> {
                     robotState = robotService.moveForward();
-                    addRobotState(robotState);
+                    addRobotState(robotState, command);
                 }
                 case 'r' -> {
                     robotState = robotService.turnRight();
-                    addRobotState(robotState);
+                    addRobotState(robotState, command);
                 }
                 case 'l' -> {
                     robotState = robotService.turnLeft();
-                    addRobotState(robotState);
+                    addRobotState(robotState, command);
                 }
                 case ';' -> {continue;}
-                case '.' -> {
-                    isTermSym = true;
-                }
+                case '.' -> {}
                 default ->
                     throw new IllegalArgumentException();
             }
         }
     }
 
-    public void sendResult() throws NotBoundException {
-
-        if(isTermSym) {
-            robotView.outputResultAsStatesList(statesList);
+    public void sendResult() {
+        /*robotView.outputResultAsStatesList(statesList);
 
             robotView.outputResultAsTable(
                     statesList,
                     robotService.getHeight(),
                     robotService.getWidth()
-            );
-        } else throw new NotBoundException();
+            );*/
+
+        robotView.outputResultAsMap(statesMap);
     }
 }

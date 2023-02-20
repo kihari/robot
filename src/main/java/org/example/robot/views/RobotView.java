@@ -6,6 +6,7 @@ import org.example.robot.models.RobotModel;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 @RequiredArgsConstructor
@@ -20,6 +21,13 @@ public class RobotView {
     public void outputResultAsStatesList(List<RobotModel> statesList) {
         for (var state : statesList) {
             System.out.println(state);
+        }
+    }
+
+    public void outputResultAsMap(Map<Character, RobotModel> statesMap) {
+        for (Map.Entry entry : statesMap.entrySet()) {
+            System.out.println("command: " + entry.getKey()
+                    + ", state: " + entry.getValue());
         }
     }
 
