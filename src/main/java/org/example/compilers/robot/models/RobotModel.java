@@ -1,4 +1,4 @@
-package org.example.robot.models;
+package org.example.compilers.robot.models;
 
 import lombok.Getter;
 import lombok.Setter;

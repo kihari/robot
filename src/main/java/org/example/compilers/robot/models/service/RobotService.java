@@ -1,10 +1,6 @@
-package org.example.robot.models.service;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import org.example.robot.models.Direction;
-import org.example.robot.models.RobotModel;
-
-import java.util.Hashtable;
+package org.example.compilers.robot.models.service;
+import org.example.compilers.robot.models.Direction;
+import org.example.compilers.robot.models.RobotModel;
 
 public class RobotService {
     private RobotModel robotModel;

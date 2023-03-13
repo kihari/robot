@@ -1,11 +1,11 @@
-package org.example.robot;
+package org.example.compilers;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.example.robot.controllers.RobotController;
-import org.example.robot.models.RobotModel;
-import org.example.robot.views.RobotView;
+import org.example.compilers.robot.controllers.RobotController;
+import org.example.compilers.robot.models.RobotModel;
+import org.example.compilers.robot.views.RobotView;
 
 import java.util.LinkedList;
 import java.util.List;

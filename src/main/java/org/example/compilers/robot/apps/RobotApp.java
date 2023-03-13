@@ -1,9 +1,9 @@
-package org.example.robot.apps;
+package org.example.compilers.robot.apps;
 
-import org.example.robot.controllers.RobotController;
-import org.example.robot.models.RobotModel;
-import org.example.robot.models.service.RobotService;
-import org.example.robot.views.RobotView;
+import org.example.compilers.robot.controllers.RobotController;
+import org.example.compilers.robot.models.RobotModel;
+import org.example.compilers.robot.models.service.RobotService;
+import org.example.compilers.robot.views.RobotView;
 
 import java.rmi.NotBoundException;
 

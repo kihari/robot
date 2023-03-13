@@ -1,10 +1,9 @@
-package org.example.robot.views;
+package org.example.compilers.robot.views;
 
 import lombok.RequiredArgsConstructor;
-import org.example.robot.models.RobotModel;
+import org.example.compilers.robot.models.RobotModel;
 
 import java.io.InputStream;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
